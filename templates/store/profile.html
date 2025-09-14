@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile - My Shop{% endblock %}
+
+{% block content %}
+  <h2>Your Orders</h2>
+  {% if orders %}
+    <ul>
+      {% for o in orders %}
+        <li>
+          Order #{{ o.id }} - {{ o.created_at }} - ${{ o.total }} - {{ o.get_status_display }}
+          <ul>
+            {% for item in o.items.all %}
+              <li>{{ item.quantity }} x {{ item.product.title }}</li>
+            {% endfor %}
+          </ul>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>You have no completed orders yet.</p>
+  {% endif %}
+{% endblock %}

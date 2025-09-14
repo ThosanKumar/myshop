@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.title }} - My Shop{% endblock %}
+
+{% block content %}
+  <article class="product-card product-detail-card">
+    <div class="product-image-wrap">
+      {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.title }}" class="product-image">
+      {% else %}
+        {% comment %} choose placeholder based on id to keep consistency {% endcomment %}
+        {% with idx=product.id|default:1 %}
+          {% cycle 'ai-1.svg' 'ai-2.svg' 'ai-3.svg' 'ai-4.svg' as placeholder %}
+          <img src="/static/images/products/{{ placeholder }}" alt="{{ product.title }} (placeholder)" class="product-image">
+        {% endwith %}
+      {% endif %}
+    </div>
+    <div>
+      <h2>{{ product.title }}</h2>
+      <p>{{ product.description }}</p>
+      <p class="price">Price: ${{ product.price }}</p>
+      <form action="{% url 'store:cart_add' product.id %}" method="post">{% csrf_token %}
+        <button type="submit" class="btn btn--primary">Add to cart</button>
+      </form>
+    </div>
+  </article>
+{% endblock %}

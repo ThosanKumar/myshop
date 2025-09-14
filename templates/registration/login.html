@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Login - My Shop{% endblock %}
+
+{% block content %}
+  <section class="auth-card">
+    <h2>Log in to your account</h2>
+    <form method="post" action="?next={{ next }}" class="form-stack">{% csrf_token %}
+      {% for field in form %}
+        <label class="form-field">
+          <span class="label-text">{{ field.label }}</span>
+          {{ field }}
+          {% if field.help_text %}<small class="muted">{{ field.help_text }}</small>{% endif %}
+          {% for err in field.errors %}<div class="form-error">{{ err }}</div>{% endfor %}
+        </label>
+      {% endfor %}
+      <button type="submit" class="btn btn--primary">Log in</button>
+    </form>
+    <p class="muted">Don't have an account? <a href="/accounts/signup/">Sign up</a></p>
+  </section>
+{% endblock %}

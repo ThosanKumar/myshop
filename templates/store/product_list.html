@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Products - My Shop{% endblock %}
+
+{% block content %}
+  <h2>Products</h2>
+  <ul class="products">
+    {% for p in products %}
+      <li class="product-card">
+        {% comment %} image: use product image if available, otherwise pick an AI placeholder deterministically {% endcomment %}
+        <div class="product-image-wrap">
+          {% if p.image %}
+            <img src="{{ p.image.url }}" alt="{{ p.title }}" class="product-image">
+          {% else %}
+            {% cycle 'ai-1.svg' 'ai-2.svg' 'ai-3.svg' 'ai-4.svg' as placeholder %}
+            <img src="/static/images/products/{{ placeholder }}" alt="{{ p.title }} (placeholder)" class="product-image">
+          {% endif %}
+        </div>
+        <h3><a href="{% url 'store:product_detail' slug=p.slug %}">{{ p.title }}</a></h3>
+        <p>{{ p.description|truncatechars:100 }}</p>
+        <div class="price">${{ p.price }}</div>
+        <form action="{% url 'store:cart_add' p.id %}" method="post" class="form-inline">{% csrf_token %}
+          <button type="submit" class="btn">Add to cart</button>
+        </form>
+      </li>
+    {% empty %}
+      <li>No products yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

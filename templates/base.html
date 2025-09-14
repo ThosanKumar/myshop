@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{% block title %}My Shop{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script src="/static/js/cart.js" defer></script>
+  </head>
+  <body class="site-root">
+    {% include 'partials/header.html' %}
+    <main class="container main-content">
+      {% block content %}{% endblock %}
+    </main>
+    {% include 'partials/footer.html' %}
+  </body>
+</html>

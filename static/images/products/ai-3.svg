@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="g3" x1="0" x2="1">
+      <stop offset="0" stop-color="#34d399"/>
+      <stop offset="1" stop-color="#06b6d4"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="#fffefe"/>
+  <g transform="translate(40,40)">
+    <path d="M80 120 C150 20, 300 10, 420 90 C540 170, 620 330, 480 420 C340 510, 160 480, 80 360 C0 240, 10 220, 80 120 Z" fill="url(#g3)" opacity="0.95"/>
+    <rect x="520" y="60" width="180" height="120" rx="20" fill="#f472b6" opacity="0.9"/>
+  </g>
+  <text x="40" y="560" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#111">AI Generated</text>
+</svg>
