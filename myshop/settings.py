@@ -3,7 +3,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-change-me'
 DEBUG = True
-ALLOWED_HOSTS = []
+import os
+
+# Allow the Render host and enable overriding via the ALLOWED_HOSTS env var.
+# Example on Render: set ALLOWED_HOSTS=myshop-zg9r.onrender.com
+env_allowed = os.environ.get('ALLOWED_HOSTS')
+if env_allowed:
+    # Support comma-separated values in the env var
+    ALLOWED_HOSTS = [h.strip() for h in env_allowed.split(',') if h.strip()]
+else:
+    ALLOWED_HOSTS = ['myshop-zg9r.onrender.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
