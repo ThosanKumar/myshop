@@ -12,7 +12,7 @@ if env_allowed:
     # Support comma-separated values in the env var
     ALLOWED_HOSTS = [h.strip() for h in env_allowed.split(',') if h.strip()]
 else:
-    ALLOWED_HOSTS = ['myshop-zg9r.onrender.com']
+    ALLOWED_HOSTS = ['myshop-09sn.onrender.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
